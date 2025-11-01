@@ -1,11 +1,30 @@
-<h1>{{title()}}</h1>
+<div class="app-container">
+  <div class="app-header">
+    <h1>{{title()}}</h1>
+    <span>Selected Recipe: {{ selectedRecipe().name }}</span>
+    <span>{{ selectedRecipe().description }}</span>
 
-<h5>Selected Recipe: {{ selectedRecipe().name }}</h5>
-<h6>{{ selectedRecipe().description }}</h6>
+    <div class="app-header-servings">
+      <span>Servings: {{ servingsCount() }}</span>
+      <button (click)="decrement()">-</button>
+      <button (click)="increment()">+</button>
+    </div>
 
-@for (recipe of recipes(); track recipe.id) {
-  <button  
-   (click)="selectRecipe(recipe.id)">{{ recipe.name }}</button>
-}
+  </div>
+  
+  <div class="app-content">
+    @for (recipe of recipes(); track recipe.id) {
+      <button  
+      (click)="selectRecipe(recipe.id)">{{ recipe.name }}
+      </button>
+    }
 
-<router-outlet />
+    <div class="app-ingredients">
+      <!-- <pre>{{ selectedRecipe() | json }}</pre>  -->
+      <!-- <pre>{{ selectedRecipe().ingredients | json }}</pre>  -->
+      <pre>{{ selectedRecipeIngredients() | json }}</pre> 
+    </div>  
+  </div>
+ 
+  <router-outlet />
+</div>
