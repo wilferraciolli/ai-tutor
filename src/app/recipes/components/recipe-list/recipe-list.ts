@@ -2,21 +2,34 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, signal, Signal, WritableSignal } from '@angular/core';
 import { MOCK_RECIPES } from '../../../mock-recipes';
 import { RecipeModel, Ingredient } from '../../../models';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.scss'
 })
 export class RecipeList {
-  protected readonly recipes: Signal<RecipeModel[]> = signal(MOCK_RECIPES)
+  protected readonly recipes: Signal<RecipeModel[]> = signal(MOCK_RECIPES);
+
+  protected searchTerm: WritableSignal<string | null> = signal(null);
+  protected readonly filteredRecipes: Signal<RecipeModel[]> = computed(() => {
+    const term = this.searchTerm();
+
+    if(term){
+      return this.recipes()
+      .filter(recipe => recipe.name.toLowerCase()
+      .includes(term.toLocaleLowerCase()));
+    }
+  
+      return this.recipes();
+  });
   
   protected selectedRecipe: WritableSignal<RecipeModel> = signal(this.recipes()[0]);
   protected selectedRecipeIngredients: Signal<Array<Ingredient>> 
-  = computed(() => this.selectedRecipe().ingredients
-.map(ingredient => ({...ingredient, quantity: ingredient.quantity * this.servingsCount()})));
+  = computed(() => this.selectedRecipe().ingredients.map(ingredient => ({...ingredient, quantity: ingredient.quantity * this.servingsCount()})));
   
   protected servingsCount = signal(1);
 
@@ -37,4 +50,11 @@ export class RecipeList {
     this.servingsCount.update(count => count - 1);
   }
 
+  // protected search(query: string): void {
+  //   this.searchTerm().set(query);
+  // }
+  
+  protected clearSearch(): void {
+   this.searchTerm.set(null);
+  }
 }
