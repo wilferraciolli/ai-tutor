@@ -1,9 +1,9 @@
-.app-container {
+.recipe-list-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column;   
 }
 
-.app-header {
+.recipe-list-header {
     background-color: antiquewhite;
     display: flex;
     flex-direction: column;
@@ -13,13 +13,13 @@
     /* align-items: center; */
 }
 
-.app-header-servings {
+.recipe-list-servings {
     display: flex;
     gap: 10px;
     /* jupxify-content: space-between; */
     align-items: center;
 }
 
-.app-content {
+.recipe-list-content {
     background-color: aqua;
 }
