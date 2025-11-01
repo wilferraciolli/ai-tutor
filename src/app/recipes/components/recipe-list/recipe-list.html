@@ -20,9 +20,16 @@
       }
   
       <div class="recipe-list-ingredients">
+        @for (ingredient of selectedRecipeIngredients(); track ingredient.name) {
+          <div class="recipe-list-ingredientContainer">
+            <span>{{ ingredient.name }}</span>
+            <p>{{ingredient.quantity }} {{ ingredient.unit }}</p>
+          </div>
+      
+      }
         <!-- <pre>{{ selectedRecipe() | json }}</pre>  -->
         <!-- <pre>{{ selectedRecipe().ingredients | json }}</pre>  -->
-        <pre>{{ selectedRecipeIngredients() | json }}</pre> 
+        <!-- <pre>{{ selectedRecipeIngredients() | json }}</pre>  -->
       </div>  
     </div>
    

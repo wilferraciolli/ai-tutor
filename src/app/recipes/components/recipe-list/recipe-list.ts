@@ -4,7 +4,6 @@ import { MOCK_RECIPES } from '../../../mock-recipes';
 import { RecipeModel, Ingredient } from '../../../models';
 
 
-
 @Component({
   selector: 'app-recipe-list',
   imports: [CommonModule],
