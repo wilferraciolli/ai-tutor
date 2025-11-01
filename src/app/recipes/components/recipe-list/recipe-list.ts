@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, signal, Signal, WritableSignal } from '@angular/core';
+import { Component, computed, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { MOCK_RECIPES } from '../../../mock-recipes';
 import { RecipeModel, Ingredient } from '../../../models';
 import { FormsModule } from '@angular/forms';
+import { RecipeService } from '../../services/recipe.service';
 
 
 @Component({
@@ -12,8 +13,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './recipe-list.scss'
 })
 export class RecipeList {
-  protected readonly recipes: Signal<RecipeModel[]> = signal(MOCK_RECIPES);
+  private readonly _recipeService: RecipeService = inject(RecipeService);
 
+  protected readonly recipes: Signal<RecipeModel[]> = signal(this._recipeService.getAllRecipes());
   protected searchTerm: WritableSignal<string | null> = signal(null);
   protected readonly filteredRecipes: Signal<RecipeModel[]> = computed(() => {
     const term = this.searchTerm();
