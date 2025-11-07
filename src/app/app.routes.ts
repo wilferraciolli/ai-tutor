@@ -10,7 +10,7 @@ import { RecipeList } from './recipes/components/recipe-list/recipe-list';
 import { RecipeDetail } from './recipes/components/recipe-detail/recipe-detail';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/recipes', },
-    { path: 'recipes', component: RecipeList },
-    { path: 'recipes/ϊδ', component: RecipeDetail }
+    // { path: '', redirectTo: '/recipes', },
+    { path: '', component: RecipeList },
+    { path: 'recipes/:id', component: RecipeDetail }
 ];

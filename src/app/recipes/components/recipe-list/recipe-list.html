@@ -2,44 +2,18 @@
   <div class="recipe-list-searchContainer">
     <input id="search" type="text" [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)"
       placeholder="Search for a recipe">
-    <!-- <button (click)="search()">Search</button>  -->
     <button (click)="clearSearch()">Clear</button>
   </div>
 
-  <!-- <div class="recipe-list-header">
-    <span>Selected Recipe: {{ selectedRecipe().name }}</span>
-    <span>{{ selectedRecipe().description }}</span>
-    <img [src]="selectedRecipe().imgUrl" alt="A dish of {{ selectedRecipe().name }}">
-
-    <div class="recipe-list-servings">
-      <span>Servings: {{ servingsCount() }}</span>
-      <button (click)="decrement()">-</button>
-      <button (click)="increment()">+</button>
-    </div>
-
-  </div> -->
-
-  <div class="recipe-list-content">
+  <div class="recipe-list-itemsContainer">
     @for (recipe of filteredRecipes(); track recipe.id) {
-    <button (click)="selectRecipe(recipe.id)">{{ recipe.name }}
-    </button>
-    <a [routerLink]="['recipes', recipe.id]">Current User</a>
+    <div class="recipe-list-item">
+      <a [routerLink]="['recipes', recipe.id]">{{recipe.name}}</a>
+    </div>
+    <!-- <pre>{{ recipe | json }}</pre> -->
     } @empty {
     <h2>No recipes found</h2>
     }
-
-    <!-- <div class="recipe-list-ingredients">
-      @for (ingredient of selectedRecipeIngredients(); track ingredient.name) {
-      <div class="recipe-list-ingredientContainer">
-        <span>{{ ingredient.name }}</span>
-        <p>{{ingredient.quantity }} {{ ingredient.unit }}</p>
-      </div>
-
-      }
-      <!-- <pre>{{ selectedRecipe() | json }}</pre>  -->
-      <!-- <pre>{{ selectedRecipe().ingredients | json }}</pre>  -->
-      <!-- <pre>{{ selectedRecipeIngredients() | json }}</pre>  -->
-    <!-- </div> -->
   </div>
 
 </div>

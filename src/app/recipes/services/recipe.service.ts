@@ -10,4 +10,14 @@ export class RecipeService {
     return MOCK_RECIPES;
   }
 
+  public getRecipe(recipeId: number): RecipeModel {
+    const recipe: RecipeModel | undefined = this.getAllRecipes()
+      .find(recipe => recipe.id === recipeId);
+
+    if (recipe) {
+      return recipe;
+    }
+    return this.getAllRecipes()[0];
+  }
+
 }
