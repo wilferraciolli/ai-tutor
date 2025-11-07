@@ -4,11 +4,12 @@ import { MOCK_RECIPES } from '../../../mock-recipes';
 import { RecipeModel, Ingredient } from '../../../models';
 import { FormsModule } from '@angular/forms';
 import { RecipeService } from '../../services/recipe.service';
+import { RouterLink } from "@angular/router";
 
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './recipe-list.html',
   styleUrl: './recipe-list.scss'
 })
