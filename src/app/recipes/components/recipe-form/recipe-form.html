@@ -2,24 +2,28 @@
 
 <div class="recipe-form-container">
     <form [formGroup]="form" (ngSubmit)="handleSubmit()">
-        <label for="">
-            Name:
-            <input type="text" formControlName="name">
-        </label>
-        <br />
+        <mat-form-field class="recipe-form-field">
+            <mat-label>Enter the name of the recipe</mat-label>
+            <input matInput placeholder="Past al Forno" [formControl]="form.controls.name" (blur)="updateErrorMessage()"
+                required />
+            @if (form.controls.name.invalid) {
+            <mat-error>{{errorMessage()}}</mat-error>
+            }
+        </mat-form-field>
 
-        <label for="">
-            Description:
-            <input type="text" formControlName="description">
-        </label>
-        <br />
+        <mat-form-field class="recipe-form-field">
+            <mat-label>Enter a description for the recipe</mat-label>
+            <input matInput placeholder="Past al Forno" [formControl]="form.controls.description"
+                (blur)="updateErrorMessage()" required />
+            @if (form.controls.description.invalid) {
+            <mat-error>{{errorMessage()}}</mat-error>
+            }
+        </mat-form-field>
 
-        <button 
-          [disabled]="form.invalid || form.pristine" 
-          matTooltip="Save" 
-          (click)="handleSubmit()">Save Recipe
-        </button>
-
+        <div class="recipe-form-actions">
+            <button mat-raised-button color="primary" [disabled]="form.invalid || form.pristine" matTooltip="Save"
+                (click)="handleSubmit()">Save Recipe
+            </button>
+        </div>
     </form>
-
 </div>

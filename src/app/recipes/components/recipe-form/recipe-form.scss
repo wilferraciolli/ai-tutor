@@ -1,0 +1,15 @@
+.recipe-form {
+    &-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    &-field {
+        align-self: center;
+        width: 100%;
+    }
+
+    &-actions {}
+}
