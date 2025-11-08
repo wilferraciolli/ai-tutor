@@ -3,6 +3,7 @@
     <input id="search" type="text" [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)"
       placeholder="Search for a recipe">
     <button (click)="clearSearch()">Clear</button>
+    <a [routerLink]="['/add-recipe']">Add Recipe</a>
   </div>
 
   <div class="recipe-list-itemsContainer">
@@ -15,5 +16,7 @@
     <h2>No recipes found</h2>
     }
   </div>
+
+  <pre>{{ filteredRecipes() | json }}</pre>
 
 </div>

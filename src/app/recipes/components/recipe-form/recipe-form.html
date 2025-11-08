@@ -1,0 +1,25 @@
+<a routerLink="/"> Back to recipes </a>
+
+<div class="recipe-form-container">
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+        <label for="">
+            Name:
+            <input type="text" formControlName="name">
+        </label>
+        <br />
+
+        <label for="">
+            Description:
+            <input type="text" formControlName="description">
+        </label>
+        <br />
+
+        <button 
+          [disabled]="form.invalid || form.pristine" 
+          matTooltip="Save" 
+          (click)="handleSubmit()">Save Recipe
+        </button>
+
+    </form>
+
+</div>

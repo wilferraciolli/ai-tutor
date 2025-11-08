@@ -20,4 +20,11 @@ export class RecipeService {
     return this.getAllRecipes()[0];
   }
 
+  public addRecipe(recipe: RecipeModel): void {
+    this.getAllRecipes().push(recipe);
+  }
+
+  public findNextId(): number {
+  return this.getAllRecipes().length + 1;
+  }
 }
